@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beispiel 3 – Parallax-Layer mit Tiefe</title>
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="back" href="app.html">← Zurück zur Übersicht</a>
+      <h1>Beispiel 3: Parallax-Layer mit Tiefe</h1>
+      <p class="subtitle">
+        Verwendungszweck: Hero-Abschnitte und visuelle Storytelling-Bereiche, die
+        räumliche Tiefe mit mehreren Ebenen benötigen.
+      </p>
+
+      <section class="block">
+        <h2>HTML-Struktur (Container-Hierarchie)</h2>
+        <ul class="structure">
+          <li><code>section.card</code></li>
+          <li><code>div.demo.demo-parallax</code>
+            <ul>
+              <li><code>div.scene</code>
+                <ul>
+                  <li><code>div.layer.layer-back</code></li>
+                  <li><code>div.layer.layer-mid</code></li>
+                  <li><code>div.layer.layer-front</code></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Container-Erklärung</h2>
+        <ul class="container-list">
+          <li><strong><code>section.card</code>:</strong> Inhaltlicher Rahmen für ein Beispiel in der Hauptseite. <a class="explain-link" href="#c-card">Zum Code</a></li>
+          <li><strong><code>div.demo</code>:</strong> Einheitlicher Demo-Container als Bühne. <a class="explain-link" href="#c-demo">Zum Code</a></li>
+          <li><strong><code>div.demo-parallax</code>:</strong> Zentriert die Parallax-Szene innerhalb der Bühne. <a class="explain-link" href="#c-demo-parallax">Zum Code</a></li>
+          <li><strong><code>div.scene</code>:</strong> 3D-Kontext mit <code>perspective</code> und <code>preserve-3d</code> für verschachtelte Ebenen. <a class="explain-link" href="#c-scene">Zum Code</a></li>
+          <li><strong><code>div.layer</code>:</strong> Gemeinsame Basiseigenschaften aller Ebenen (absolute Position, Zentrierung). <a class="explain-link" href="#c-layer">Zum Code</a></li>
+          <li><strong><code>.layer-back</code>:</strong> Hintergrundebene bei negativem Z-Wert. <a class="explain-link" href="#c-layer-back">Zum Code</a></li>
+          <li><strong><code>.layer-mid</code>:</strong> Mittlere Referenzebene nahe Z = 0. <a class="explain-link" href="#c-layer-mid">Zum Code</a></li>
+          <li><strong><code>.layer-front</code>:</strong> Vordergrundebene mit positivem Z-Wert für Nähe-Effekt. <a class="explain-link" href="#c-layer-front">Zum Code</a></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Quellcode</h2>
+        <div class="code-window">
+          <pre><code>&lt;!-- HTML --&gt;
+&lt;<span class="code-anchor" id="c-card">section class="card"</span>&gt;
+  &lt;<span class="code-anchor" id="c-demo">div class="demo</span> <span class="code-anchor" id="c-demo-parallax">demo-parallax"</span>&gt;
+    &lt;<span class="code-anchor" id="c-scene">div class="scene"</span>&gt;
+      &lt;<span class="code-anchor" id="c-layer">div class="layer</span> <span class="code-anchor" id="c-layer-back">layer-back"</span>&gt;Hintergrund&lt;/div&gt;
+      &lt;div class="layer <span class="code-anchor" id="c-layer-mid">layer-mid</span>"&gt;Mitte&lt;/div&gt;
+      &lt;div class="layer <span class="code-anchor" id="c-layer-front">layer-front</span>"&gt;Vorne&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+/* CSS */
+.scene {
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.layer-back {
+  transform: translate3d(0, 0, -40px);
+}
+
+.layer-mid {
+  transform: translate3d(0, -2px, 0);
+}
+
+.layer-front {
+  transform: translate3d(0, -6px, 35px);
+}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

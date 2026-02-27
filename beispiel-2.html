@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beispiel 2 – Off-Canvas Menü</title>
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="back" href="app.html">← Zurück zur Übersicht</a>
+      <h1>Beispiel 2: Off-Canvas Menü</h1>
+      <p class="subtitle">
+        Verwendungszweck: Mobile Navigation oder Filterleisten, die platzsparend
+        seitlich ein- und ausgeblendet werden.
+      </p>
+
+      <section class="block">
+        <h2>HTML-Struktur (Container-Hierarchie)</h2>
+        <ul class="structure">
+          <li><code>section.card</code></li>
+          <li><code>div.demo.demo-drawer</code>
+            <ul>
+              <li><code>button#toggleDrawer.btn</code></li>
+              <li><code>div#drawerWrap.drawer-wrap</code>
+                <ul>
+                  <li><code>aside#drawer.drawer</code>
+                    <ul>
+                      <li><code>h3</code> und <code>ul</code></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Container-Erklärung</h2>
+        <ul class="container-list">
+          <li><strong><code>section.card</code>:</strong> Umschließt das komplette Beispiel in der Übersicht. <a class="explain-link" href="#c-card">Zum Code</a></li>
+          <li><strong><code>div.demo</code>:</strong> Standard-Demo-Container mit konsistentem Layout. <a class="explain-link" href="#c-demo">Zum Code</a></li>
+          <li><strong><code>div.demo-drawer</code>:</strong> Semantischer Marker für das Drawer-Beispiel. <a class="explain-link" href="#c-demo-drawer">Zum Code</a></li>
+          <li><strong><code>button.btn</code>:</strong> UI-Trigger; schaltet die Klasse <code>open</code> am Drawer. <a class="explain-link" href="#c-btn">Zum Code</a></li>
+          <li><strong><code>div.drawer-wrap</code>:</strong> Sichtfenster mit <code>overflow: hidden</code>, damit das Panel außerhalb abgeschnitten bleibt. <a class="explain-link" href="#c-drawer-wrap">Zum Code</a></li>
+          <li><strong><code>aside.drawer</code>:</strong> Das verschiebbare Panel; startet mit <code>translate3d(-190px, 0, 0)</code> außerhalb links. <a class="explain-link" href="#c-drawer">Zum Code</a></li>
+          <li><strong><code>aside.drawer.open</code>:</strong> Endzustand im Sichtbereich mit <code>translate3d(0, 0, 0)</code>. <a class="explain-link" href="#c-drawer-open">Zum Code</a></li>
+          <li><strong><code>.drawer h3</code> / <code>.drawer ul</code>:</strong> Struktur und Lesbarkeit innerhalb des Menüs. <a class="explain-link" href="#c-drawer-content">Zum Code</a></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Quellcode</h2>
+        <div class="code-window">
+          <pre><code>&lt;!-- HTML --&gt;
+&lt;<span class="code-anchor" id="c-card">section class="card"</span>&gt;
+  &lt;<span class="code-anchor" id="c-demo">div class="demo</span> <span class="code-anchor" id="c-demo-drawer">demo-drawer"</span>&gt;
+    &lt;<span class="code-anchor" id="c-btn">button id="toggleDrawer" class="btn"</span>&gt;Menü umschalten&lt;/button&gt;
+    &lt;<span class="code-anchor" id="c-drawer-wrap">div class="drawer-wrap"</span>&gt;
+      &lt;<span class="code-anchor" id="c-drawer">aside class="drawer"</span>&gt;
+        &lt;<span class="code-anchor" id="c-drawer-content">h3&gt;Menü&lt;/h3&gt;</span>
+        &lt;ul&gt;...&lt;/ul&gt;
+      &lt;/aside&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+/* CSS */
+.drawer {
+  transform: translate3d(-190px, 0, 0);
+}
+
+<span class="code-anchor" id="c-drawer-open">.drawer.open {
+  transform: translate3d(0, 0, 0);
+}</span>
+
+/* JavaScript */
+toggleDrawerButton.addEventListener("click", () =&gt; {
+  drawer.classList.toggle("open");
+});</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

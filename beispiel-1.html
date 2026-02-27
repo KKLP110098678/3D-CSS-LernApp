@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beispiel 1 – Hover-Karte mit Tiefeneffekt</title>
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="back" href="app.html">← Zurück zur Übersicht</a>
+      <h1>Beispiel 1: Hover-Karte mit Tiefeneffekt</h1>
+      <p class="subtitle">
+        Verwendungszweck: Interaktive Cards/Buttons, die beim Hover eine räumliche
+        Rückmeldung geben und dadurch klickbarer wirken.
+      </p>
+
+      <section class="block">
+        <h2>HTML-Struktur (Container-Hierarchie)</h2>
+        <ul class="structure">
+          <li><code>section.card</code></li>
+          <li><code>div.demo.demo-card</code>
+            <ul>
+              <li><code>div.product-card</code>
+                <ul>
+                  <li><code>h3</code> und <code>p</code></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Container-Erklärung</h2>
+        <ul class="container-list">
+          <li><strong><code>section.card</code>:</strong> Kapselt das komplette Beispiel als eigenständigen Inhaltsblock. <a class="explain-link" href="#c-card">Zum Code</a></li>
+          <li><strong><code>div.demo</code>:</strong> Allgemeiner Demo-Rahmen (Innenabstand, Hintergrund, Rahmen). <a class="explain-link" href="#c-demo">Zum Code</a></li>
+          <li><strong><code>div.demo-card</code>:</strong> Definiert den 3D-Raum per <code>perspective</code>, damit Z-Bewegung sichtbar wird. <a class="explain-link" href="#c-demo-card">Zum Code</a></li>
+          <li><strong><code>div.product-card</code>:</strong> Das eigentliche animierte Element mit Startzustand und Transition. <a class="explain-link" href="#c-product-card">Zum Code</a></li>
+          <li><strong><code>div.product-card:hover</code>:</strong> Hebt das Element mit <code>translate3d(0, -10px, 24px)</code> an (Y nach oben, Z nach vorne). <a class="explain-link" href="#c-product-hover">Zum Code</a></li>
+          <li><strong><code>.product-card h3</code> / <code>.product-card p</code>:</strong> Sorgt für klare Typografie innerhalb der Card. <a class="explain-link" href="#c-product-text">Zum Code</a></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Quellcode</h2>
+        <div class="code-window">
+          <pre><code>&lt;!-- HTML --&gt;
+&lt;<span class="code-anchor" id="c-card">section class="card"</span>&gt;
+  &lt;<span class="code-anchor" id="c-demo">div class="demo</span> <span class="code-anchor" id="c-demo-card">demo-card"</span>&gt;
+    &lt;<span class="code-anchor" id="c-product-card">div class="product-card"</span>&gt;
+      &lt;<span class="code-anchor" id="c-product-text">h3&gt;Produktkarte&lt;/h3&gt;</span>
+      &lt;p&gt;Hover für 3D-Lift&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+/* CSS */
+.product-card {
+  transform: translate3d(0, 0, 0);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+<span class="code-anchor" id="c-product-hover">.product-card:hover {
+  transform: translate3d(0, -10px, 24px);
+}</span>
+
+.product-card h3,
+.product-card p {
+  margin: 0;
+}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

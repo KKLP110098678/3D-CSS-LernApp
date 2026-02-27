@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beispiel 4 – Performance-freundliche Bewegungsanimation</title>
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="back" href="app.html">← Zurück zur Übersicht</a>
+      <h1>Beispiel 4: Performance-freundliche Bewegungsanimation</h1>
+      <p class="subtitle">
+        Verwendungszweck: Micro-Animationen (z. B. Loader), die auf vielen Geräten
+        flüssig bleiben sollen.
+      </p>
+
+      <section class="block">
+        <h2>HTML-Struktur (Container-Hierarchie)</h2>
+        <ul class="structure">
+          <li><code>section.card</code></li>
+          <li><code>div.demo.demo-motion</code>
+            <ul>
+              <li><code>div.track</code>
+                <ul>
+                  <li><code>div.dot</code></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Container-Erklärung</h2>
+        <ul class="container-list">
+          <li><strong><code>section.card</code>:</strong> Kapselt das Beispiel in der Übersicht. <a class="explain-link" href="#c-card">Zum Code</a></li>
+          <li><strong><code>div.demo</code>:</strong> Einheitlicher Umgebungscontainer. <a class="explain-link" href="#c-demo">Zum Code</a></li>
+          <li><strong><code>div.demo-motion</code>:</strong> Semantischer Marker für das Bewegungsbeispiel. <a class="explain-link" href="#c-demo-motion">Zum Code</a></li>
+          <li><strong><code>div.track</code>:</strong> Definiert die sichtbare Laufstrecke des bewegten Elements. <a class="explain-link" href="#c-track">Zum Code</a></li>
+          <li><strong><code>div.dot</code>:</strong> Das animierte Objekt; bewegt sich per <code>@keyframes slide3d</code>. <a class="explain-link" href="#c-dot">Zum Code</a></li>
+          <li><strong><code>@keyframes slide3d</code>:</strong> Hauptanimation mit 3D-Translation auf X/Y/Z. <a class="explain-link" href="#c-keyframes">Zum Code</a></li>
+          <li><strong><code>@media (max-width: 600px)</code> + <code>slide3d-mobile</code>:</strong> Angepasste Bewegungsdistanz auf kleinen Displays. <a class="explain-link" href="#c-media">Zum Code</a></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Quellcode</h2>
+        <div class="code-window">
+          <pre><code>&lt;!-- HTML --&gt;
+&lt;<span class="code-anchor" id="c-card">section class="card"</span>&gt;
+  &lt;<span class="code-anchor" id="c-demo">div class="demo</span> <span class="code-anchor" id="c-demo-motion">demo-motion"</span>&gt;
+    &lt;<span class="code-anchor" id="c-track">div class="track"</span>&gt;
+      &lt;<span class="code-anchor" id="c-dot">div class="dot"</span>&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+/* CSS */
+<span class="code-anchor" id="c-keyframes">@keyframes slide3d {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(300px, -6px, 30px); }
+  100% { transform: translate3d(0, 0, 0); }
+}</span>
+
+<span class="code-anchor" id="c-media">@media (max-width: 600px) {
+  .dot { animation-name: slide3d-mobile; }
+}</span></code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
