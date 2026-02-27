@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>translate3d verständlich erklärt</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>CSS <code>translate3d()</code> einfach erklärt</h1>
+      <p>
+        Mit <code>translate3d(x, y, z)</code> verschiebst du Elemente entlang der X-,
+        Y- und Z-Achse. Der große Vorteil: Animationen laufen oft flüssiger, weil
+        der Browser Transform-Eigenschaften gut optimieren kann.
+      </p>
+      <div class="formula">transform: translate3d(x, y, z);</div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>1) Hover-Karte mit Tiefeneffekt</h2>
+        <p class="purpose">
+          <strong>Verwendungszweck:</strong> Interaktive UI-Elemente (Cards, Buttons),
+          die beim Hover „lebendig" wirken sollen.
+        </p>
+        <div class="demo demo-card">
+          <div class="product-card">
+            <h3>Produktkarte</h3>
+            <p>Hover für 3D-Lift</p>
+          </div>
+        </div>
+        <details class="explain">
+          <summary>Details: So funktioniert Beispiel 1</summary>
+          <p>
+            Die Karte startet mit <code>translate3d(0, 0, 0)</code> und wird beim Hover
+            nach oben (Y-Achse) und nach vorne (Z-Achse) verschoben. Durch die
+            <code>perspective</code> im Container wirkt der Z-Wert räumlich.
+          </p>
+          <ul>
+            <li><code>.demo</code>: Basis-Demobox (Rahmen, Hintergrund, Innenabstand).</li>
+            <li><code>.demo-card</code>: setzt <code>perspective: 700px</code> und zentriert das Kind.</li>
+            <li><code>.product-card</code>: Größe, Optik, Startposition und Transition.</li>
+            <li><code>.product-card:hover</code>: hebt die Karte mit <code>translate3d(0, -10px, 24px)</code> an.</li>
+            <li><code>.product-card h3</code> und <code>.product-card p</code>: typografische Feinabstände in der Karte.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>2) Off-Canvas Menü (Seitliches Einschieben)</h2>
+        <p class="purpose">
+          <strong>Verwendungszweck:</strong> Mobile Navigation, Sidebars oder Filter,
+          die weich ein- und ausgeblendet werden.
+        </p>
+        <div class="demo demo-drawer">
+          <button id="toggleDrawer" class="btn">Menü umschalten</button>
+          <div class="drawer-wrap" id="drawerWrap">
+            <aside class="drawer" id="drawer">
+              <h3>Menü</h3>
+              <ul>
+                <li>Start</li>
+                <li>Produkte</li>
+                <li>Kontakt</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+        <details class="explain">
+          <summary>Details: So funktioniert Beispiel 2</summary>
+          <p>
+            Das Menü liegt absolut im sichtbaren Bereich, startet aber links außerhalb
+            mit <code>translate3d(-190px, 0, 0)</code>. Beim Klick wird per JavaScript die
+            Klasse <code>open</code> umgeschaltet und das Menü fährt auf X = 0 ein.
+          </p>
+          <ul>
+            <li><code>.demo</code>: Basis-Demobox für den visuellen Rahmen.</li>
+            <li><code>.demo-drawer</code>: semantischer Beispiel-Container (nutzt Standard-Demo-Layout).</li>
+            <li><code>.btn</code>: Styling des Toggle-Buttons.</li>
+            <li><code>.drawer-wrap</code>: sichtbares Fenster/Clipping-Bereich für das Menü.</li>
+            <li><code>.drawer</code>: Off-Canvas-Panel mit Startposition außerhalb links.</li>
+            <li><code>.drawer.open</code>: Zielzustand mit <code>translate3d(0, 0, 0)</code>.</li>
+            <li><code>.drawer h3</code> und <code>.drawer ul</code>: Innenabstände und Lesbarkeit des Menüs.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>3) Parallax-Layer mit Tiefe</h2>
+        <p class="purpose">
+          <strong>Verwendungszweck:</strong> Hero-Bereiche und Storytelling-Sektionen,
+          in denen mehrere Ebenen räumlich wirken sollen.
+        </p>
+        <div class="demo demo-parallax">
+          <div class="scene">
+            <div class="layer layer-back">Hintergrund</div>
+            <div class="layer layer-mid">Mitte</div>
+            <div class="layer layer-front">Vorne</div>
+          </div>
+        </div>
+        <details class="explain">
+          <summary>Details: So funktioniert Beispiel 3</summary>
+          <p>
+            Mehrere Ebenen teilen sich dieselbe Fläche, werden aber auf unterschiedliche
+            Z-Positionen gelegt. So entsteht Tiefe: Hintergrund nach hinten (negatives Z),
+            Vordergrund nach vorne (positives Z).
+          </p>
+          <ul>
+            <li><code>.demo</code>: Basis-Demobox.</li>
+            <li><code>.demo-parallax</code>: zentriert die Szene im Demo-Bereich.</li>
+            <li><code>.scene</code>: aktiviert mit <code>perspective</code> und <code>transform-style: preserve-3d</code> den 3D-Raum.</li>
+            <li><code>.layer</code>: gemeinsame Eigenschaften aller Ebenen (Position, Radius, Zentrierung).</li>
+            <li><code>.layer-back</code>: Ebene im Hintergrund via <code>translate3d(..., ..., -40px)</code>.</li>
+            <li><code>.layer-mid</code>: mittlere Ebene nahe der Grundfläche.</li>
+            <li><code>.layer-front</code>: vordere Ebene via <code>translate3d(..., ..., 35px)</code>.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>4) Performance-freundliche Bewegungsanimation</h2>
+        <p class="purpose">
+          <strong>Verwendungszweck:</strong> Kleine Loader- oder Micro-Animationen,
+          die auf vielen Geräten flüssig laufen sollen.
+        </p>
+        <div class="demo demo-motion">
+          <div class="track">
+            <div class="dot"></div>
+          </div>
+        </div>
+        <details class="explain">
+          <summary>Details: So funktioniert Beispiel 4</summary>
+          <p>
+            Der Punkt wird in einer Endlosschleife über die X-Achse bewegt und leicht
+            auf Y/Z versetzt. Da nur <code>transform</code> animiert wird, bleibt die
+            Bewegung meist performant.
+          </p>
+          <ul>
+            <li><code>.demo</code>: Basis-Demobox.</li>
+            <li><code>.demo-motion</code>: semantischer Beispiel-Container (nutzt Standard-Demo-Layout).</li>
+            <li><code>.track</code>: die visuelle Laufbahn für den Punkt.</li>
+            <li><code>.dot</code>: animiertes Element mit <code>animation: slide3d ...</code>.</li>
+            <li><code>@keyframes slide3d</code>: bewegt den Punkt mit <code>translate3d</code> von Start zu Peak und zurück.</li>
+            <li><code>@media (max-width: 600px)</code> + <code>slide3d-mobile</code>: kürzere Strecke auf kleinen Displays.</li>
+          </ul>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      Tipp: <code>translate3d()</code> verändert nur die Darstellung, nicht den Dokumentfluss.
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
